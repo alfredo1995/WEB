@@ -1,0 +1,58 @@
+1) criar a rota register
+    
+        Route::get('/register', function () { return view('site.register');});
+        
+
+2) criar o controller da rota RegisterController e o metodo index dando o return p/ view
+
+        public function index(){      return view ('site.register');    }
+    
+3) criar rota register com o metodo controller
+
+        Route::get('/register', [App\Http\Controllers\RegisterController::class, 'index'])  ->name('site.register') ;
+
+4) criar view da register.blade.php
+        criar form colocando a action="{{ route('site.register') }}"  e o methodo="post" 
+        colocar o torken @crsf para o methodo post
+        personalizar os campos name="" e value=""
+
+        <form action="{{ route('site.register') }}" method="post">
+		@csrf
+		    <div class="form_item">
+		    <h4 class="input_title">Usuario</h4>
+		    <input type="text" name="nome" placeholder="usuario">
+		</div>
+
+5) criar o metodo store no RegisterControlller para receber os dados da view register.blade.php
+
+        public function store(Request $request) {
+        Register::create($request->all());
+
+        return redirect()->route('site.login');
+
+6)  criar rota register agora com metodo post 
+
+        Route::post('/register', [App\Http\Controllers\RegisterController::class, 'store'])  ->name('site.register') ;
+
+7) criar model register.php passando os campos que vai ser gravado no banco de dados
+
+        protected $table = 'register';
+
+        protected $fillable = ['nome', 'email', 'password'];
+
+8) adicionar namespace no RegisterController passando o model Register que vai receber e enviar dados pro banco
+       
+        use App\Models\Register;
+
+9) fazer a migration para o banco de dados no database create_register_table_php
+
+        public function up()
+    {
+        Schema::create('register', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->timestamps();
+        });
+    }

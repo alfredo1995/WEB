@@ -1,4 +1,4 @@
------EXTENDENDO O TEMPLATE ADM BOOTSTRAP 5 PARA CADA VIEW --------------------------------------------------------------------------------------------------
+-----EXTENDENDO O TEMPLATE ADM BOOTSTRAP 5 MAKRO HTML PARA CADA VIEW -------------------------------------------
 
 
 extendendo layout.app

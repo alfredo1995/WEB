@@ -1,63 +1,105 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+-----EXTENDENDO O TEMPLATE ADM BOOTSTRAP 5 PARA CADA VIEW --------------------------------------------------------------------------------------------------
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+extendendo layout.app
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+        - incluir o layout hearder e nav  @incluede("layouts.hearder") @include("layouts.nav")
+        - @yield("style")
+        - @yield("wrapper") 
+        - @yield("script") 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+        <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--favicon-->
+        <link rel="icon" href="{{ asset('assets/images/favicon-32x32.png') }}" type="image/png" />
+        <!--plugins-->
+        @yield("style")
+        <link href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
+        <link href="{{ asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
+        <link href="{{ asset('assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
+        <!-- loader-->
+        <link href="{{ asset('assets/css/pace.min.css') }}" rel="stylesheet" />
+        <script src="{{ asset('assets/js/pace.min.js') }}"></script>
+        <!-- Bootstrap CSS -->
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+        <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet">
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+        <title>Siliplastic</title>
+        </head>
 
-## Learning Laravel
+        <body class="bg-theme bg-theme1">
+        <!--wrapper-->
+        <div class="wrapper">
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+        @include("layouts.header")
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+        @include("layouts.nav")
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+        <div class="page-wrapper">
+            <div class="page-content">
+                
+                @yield("wrapper")
 
-### Premium Partners
+            </div>
+        </div>
+    
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+        <!--start overlay-->
+        <div class="overlay toggle-icon"></div>
+        <!--end overlay-->
+        <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+        <!--End Back To Top Button-->
+        <footer class="page-footer">
+            <p class="mb-0">Copyright © {{ date('Y') }}. Todos os direitos reservados.</p>
+        </footer>
+        </div>
+        <!--end wrapper-->
+        <!-- Bootstrap JS -->
+        <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+        <!--plugins-->
+        <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
+        <!--app JS-->
+        <script src="{{ asset('assets/js/app.js') }}"></script>
+        @yield("script")
+</body>
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+passar a extensão dos layouts nas views        index.blade.php
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    @extends('layouts.app')
 
-## Security Vulnerabilities
+        @section('style')
+        <link href="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet"/>
+        @endsection
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+        @section('wrapper')
 
-## License
+        ////cola aqui a informacao que fica na pagina index.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# Template
+        
+        @endsection
+            
+        @section('script')
+        <script src="{{ asset('assets/plugins/chartjs/js/Chart.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+        <script src="{{ asset('assets/plugins/jquery.easy-pie-chart/jquery.easypiechart.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/sparkline-charts/jquery.sparkline.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/jquery-knob/excanvas.js') }}"></script>
+        <script src="{{ asset('assets/plugins/jquery-knob/jquery.knob.js') }}"></script>
+        <script>
+            $(function() {
+                $(".knob").knob();
+            });
+        </script>
+        <script src="{{ asset('assets/js/index.js') }}"></script>
+        @endsection
